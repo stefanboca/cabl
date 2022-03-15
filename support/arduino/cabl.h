@@ -52,7 +52,7 @@ public:
 
   static std::string getVersion()
   {
-    return util::Version(CABL_VERSION_MAJOR, CABL_VERSION_MINOR, CABL_VERSION_MICRO);
+    return util::Version(CABL_VERSION_MAJOR, CABL_VERSION_MINOR, CABL_VERSION_PATCH);
   }
 
 };

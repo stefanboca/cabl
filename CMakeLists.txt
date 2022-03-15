@@ -7,7 +7,7 @@
 
 cmake_minimum_required(VERSION 3.22)
 
-project(CABL)
+project(CABL VERSION 0.9.7)
 
 set(CABL_ROOT_DIR ${CMAKE_CURRENT_LIST_DIR})
 set(CABL_BUILD_DIR ${CMAKE_BINARY_DIR})
@@ -55,18 +55,11 @@ option(CABL_TEST_JUNIT    "Generate a JUNIT xml test report" OFF)
 
 # Version ---------------------------------------------------------------------------------------- #
 
-string(TIMESTAMP CABL_BUILD_DATE "%Y-%m-%d")
-
-set (CABL_VERSION_MAJOR 0)
-set (CABL_VERSION_MINOR 9)
-set (CABL_VERSION_MICRO 7)
-set (CABL_VERSION_STRING "${CABL_VERSION_MAJOR}.${CABL_VERSION_MINOR}.${CABL_VERSION_MICRO}")
-
 if($ENV{APPVEYOR})
   set (CABL_BUILD_HOST "Appveyor")
   set (CABL_BUILD_NUMBER ".$ENV{APPVEYOR_BUILD_NUMBER}")
   set (CABL_GIT_BRANCH $ENV{APPVEYOR_REPO_BRANCH})
-  execute_process(COMMAND appveyor UpdateBuild -Version ${CABL_VERSION_STRING})
+  execute_process(COMMAND appveyor UpdateBuild -Version ${CABL_VERSION})
 elseif($ENV{TRAVIS})
   set (CABL_BUILD_HOST "Travis-CI")
   set (CABL_BUILD_NUMBER ".$ENV{TRAVIS_BUILD_NUMBER}")
@@ -84,13 +77,13 @@ endif()
 
 if(${CABL_GIT_BRANCH} STREQUAL "master")
   set(CABL_BUILD_TYPE "release version")
-  set (CABL_VERSION_STRING "${CABL_VERSION_STRING}${CABL_BUILD_NUMBER}")
+  set (CABL_VERSION_STRING "${CABL_VERSION}${CABL_BUILD_NUMBER}")
 elseif(${CABL_GIT_BRANCH} STREQUAL "develop")
   set(CABL_BUILD_TYPE "development version")
-  set (CABL_VERSION_STRING "${CABL_VERSION_STRING}${CABL_BUILD_NUMBER}-dev")
+  set (CABL_VERSION_STRING "${CABL_VERSION}${CABL_BUILD_NUMBER}-dev")
 else()
   set(CABL_BUILD_TYPE "development version from feature branch: ${GIT_BRANCH}")
-  set (CABL_VERSION_STRING "${CABL_VERSION_STRING}${CABL_BUILD_NUMBER}-fb")
+  set (CABL_VERSION_STRING "${CABL_VERSION}${CABL_BUILD_NUMBER}-fb")
 endif()
 
 configure_file (
@@ -699,7 +692,7 @@ if(${CABL_DOCS})
 
     set( doxy_html_root       ${PROJECT_SOURCE_DIR}/support/doxygen                   )
 
-    set( doxy_project_version "v. ${CABL_VERSION_MAJOR}.${CABL_VERSION_MINOR}.${CABL_VERSION_MICRO}")
+    set( doxy_project_version "v. ${CABL_VERSION}")
 
     configure_file( ${doxyfile_in} ${doxyfile} @ONLY )
 

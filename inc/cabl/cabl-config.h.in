@@ -5,6 +5,8 @@
         ##      ##
 ##########      ############################################################# shaduzlabs.com #####*/
 
+// clang-format off
 #define CABL_VERSION_MAJOR @CABL_VERSION_MAJOR@
 #define CABL_VERSION_MINOR @CABL_VERSION_MINOR@
-#define CABL_VERSION_MICRO @CABL_VERSION_MICRO@
+#define CABL_VERSION_PATCH @CABL_VERSION_PATCH@
+// clang-format on
