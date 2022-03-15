@@ -5,9 +5,9 @@
         ##      ##
 ##########      ############################################################# shaduzlabs.com #######
 
-cmake_minimum_required (VERSION 2.8.0)
+cmake_minimum_required(VERSION 3.22)
 
-project (cabl)
+project(CABL)
 
 set(CABL_ROOT_DIR ${CMAKE_CURRENT_LIST_DIR})
 set(CABL_BUILD_DIR ${CMAKE_BINARY_DIR})
