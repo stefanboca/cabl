@@ -84,7 +84,7 @@ endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CATCH_INCLUDE_DIRS} ${CMAKE_CURRENT_LIST_DIR} ${CABL_ROOT_DIR}/src)
 
-target_link_libraries(${PROJECT_NAME} cabl-static lodepng)
+target_link_libraries(${PROJECT_NAME} cabl lodepng)
 set(CATCH_CMDARGS "")
 if(CABL_TEST_ALL)
   set(CATCH_CMDARGS "${CATCH_CMDARGS} -s")

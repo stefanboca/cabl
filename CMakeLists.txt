@@ -33,8 +33,7 @@ set(DEBUG_SUFFIX          "_d")
 
 # Options ---------------------------------------------------------------------------------------- #
 
-option(BUILD_SHARED_LIBS "build as shared library" OFF)
-option(BUILD_STATIC_LIBS "build as static library" ON)
+option(BUILD_SHARED_LIBS "Build using shared libraries" OFF)
 
 option(CABL_FORCE_BUILD_DEPENDENCIES   "Force download and build dependencies" OFF)
 
@@ -494,10 +493,9 @@ set(
     ${cabl_SRCS}
 )
 
-if(BUILD_SHARED_LIBS AND NOT COVERALLS)
+if(NOT COVERALLS)
 
-  message("BUILD_SHARED_LIBS is ON")
-  add_library( cabl SHARED ${cabl_ALL} )
+  add_library( cabl ${cabl_ALL} )
   set_target_properties(
     cabl
     PROPERTIES
@@ -538,48 +536,6 @@ if(BUILD_SHARED_LIBS AND NOT COVERALLS)
 
 endif()
 
-if(BUILD_STATIC_LIBS)
-  message("BUILD_STATIC_LIBS is ON")
-  add_library( cabl-static STATIC ${cabl_ALL} )
-  set_target_properties(
-    cabl-static
-    PROPERTIES
-      VERSION             "${CABL_VERSION_STRING}"
-      OUTPUT_NAME         "${LIBRARY_FILE_NAME}"
-      OUTPUT_NAME_DEBUG   "${LIBRARY_FILE_NAME}${DEBUG_SUFFIX}"
-  )
-
-  target_include_directories( cabl-static PUBLIC inc ${PROJECT_BINARY_DIR} ${CEREAL_INCLUDE_DIRS} )
-  target_include_directories( cabl-static PUBLIC ${LIBUSB_INCLUDE_DIRS} ${HIDAPI_INCLUDE_DIRS} )
-  target_include_directories( cabl-static PUBLIC ${RTMIDI_INCLUDE_DIRS} ${UNMIDIFY_INCLUDE_DIRS} )
-  target_include_directories( cabl-static PRIVATE src )
-
-  if(CABL_USE_NETWORK)
-    target_link_libraries( cabl-static PUBLIC ${NANOMSG_LIBRARIES} )
-    target_include_directories( cabl-static PUBLIC  ${NANOMSG_INCLUDE_DIRS} )
-    target_compile_definitions( cabl-static PRIVATE CABL_USE_NETWORK=1 )
-  endif()
-
-  if(LIBUSB_LOCAL_BUILD)
-    target_link_libraries( cabl-static PUBLIC libusb)
-  else()
-    target_link_libraries( cabl-static PUBLIC ${LIBUSB_LIBRARIES})
-  endif()
-
-  if(HIDAPI_LOCAL_BUILD)
-    target_link_libraries( cabl-static PUBLIC hidapi)
-  else()
-    target_link_libraries( cabl-static PUBLIC ${HIDAPI_LIBRARIES})
-  endif()
-
-  if(RTMIDI_LOCAL_BUILD)
-    target_link_libraries( cabl-static PUBLIC rtmidi)
-  else()
-    target_link_libraries( cabl-static PUBLIC ${RTMIDI_LIBRARIES})
-  endif()
-
-endif()
-
 if(CABL_PYTHON AND NOT COVERALLS)
   set(
     cabl_python_SRCS
@@ -599,7 +555,7 @@ if(CABL_PYTHON AND NOT COVERALLS)
     set( CABL_PYTHON_MODULE_EXTENSION ".pyd")
   endif()
 
-    add_library( pycabl SHARED ${cabl_ALL} ${cabl_python_SRCS})
+    add_library( pycabl ${cabl_ALL} ${cabl_python_SRCS})
     set_target_properties(
       pycabl
       PROPERTIES
@@ -647,26 +603,14 @@ endif()
 # OS X and Linux --------------------------------------------------------------------------------- #
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-  if(BUILD_SHARED_LIBS AND NOT COVERALLS)
-    target_link_libraries( cabl PUBLIC pthread)
-  endif()
-
-  if(BUILD_STATIC_LIBS)
-    target_link_libraries( cabl-static PUBLIC pthread)
-  endif()
+  target_link_libraries( cabl PUBLIC pthread)
 endif()
 
 if( UNIX )
 
   if(${IS_CABL})
 
-    if(BUILD_SHARED_LIBS AND NOT COVERALLS)
-      install (TARGETS    cabl             DESTINATION lib)
-    endif()
-
-    if(BUILD_STATIC_LIBS)
-      install (TARGETS    cabl-static      DESTINATION lib)
-    endif()
+    install (TARGETS    cabl             DESTINATION lib)
 
     install (FILES      ${inc_INCLUDES}  DESTINATION "include/${LIBRARY_FOLDER_NAME}")
     install (DIRECTORY  inc/cabl/client       DESTINATION "include/${LIBRARY_FOLDER_NAME}")
@@ -688,13 +632,7 @@ endif()
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
-  if(BUILD_SHARED_LIBS)
-    target_link_libraries( cabl  PUBLIC  setupapi.lib)
-  endif(BUILD_SHARED_LIBS)
-
-  if(BUILD_STATIC_LIBS)
-    target_link_libraries( cabl-static PUBLIC setupapi.lib)
-  endif(BUILD_STATIC_LIBS)
+  target_link_libraries( cabl  PUBLIC  setupapi.lib)
 
   if(CABL_PYTHON)
     target_link_libraries( pycabl PUBLIC setupapi.lib)
@@ -784,5 +722,5 @@ endif()
 # Clang-tidy and Clang-format -------------------------------------------------------------------- #
 if(IS_CABL)
   include(clang-tools)
-  clangTidyTarget(cabl-static)
+  clangTidyTarget(cabl)
 endif()

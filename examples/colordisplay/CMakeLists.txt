@@ -48,7 +48,7 @@ set_target_properties(
 
 target_link_libraries(${PROJECT_NAME})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE cabl-static lodepng)
+target_link_libraries(${PROJECT_NAME} PRIVATE cabl lodepng)
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 target_link_libraries(${PROJECT_NAME} PUBLIC "-framework CoreFoundation" "-framework IOKit")
