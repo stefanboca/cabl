@@ -68,11 +68,11 @@ void Canvas::setPixel(unsigned x_, unsigned y_, const Color& color_, bool setDir
     newColor = oldColor;
     newColor.invert();
   }
-  
+
   data()[byteIndex] = newColor.red();
   data()[byteIndex + 1] = newColor.green();
   data()[byteIndex + 2] = newColor.blue();
-  
+
   if (setDirtyFlags_ && oldColor != newColor)
   {
     setDirtyChunk(y_);
@@ -94,8 +94,7 @@ Color Canvas::pixel(unsigned x_, unsigned y_) const
 
 //--------------------------------------------------------------------------------------------------
 
-void Canvas::line(
-  unsigned x0_, unsigned y0_, unsigned x1_, unsigned y1_, const Color& color_)
+void Canvas::line(unsigned x0_, unsigned y0_, unsigned x1_, unsigned y1_, const Color& color_)
 {
   int e;
   int dx, dy;
@@ -176,8 +175,7 @@ void Canvas::line(
 
 //--------------------------------------------------------------------------------------------------
 
-void Canvas::Canvas::lineVertical(
-  unsigned x_, unsigned y_, unsigned l_, const Color& color_)
+void Canvas::Canvas::lineVertical(unsigned x_, unsigned y_, unsigned l_, const Color& color_)
 {
   for (unsigned y = y_; y < y_ + l_; y++)
   {
@@ -328,20 +326,15 @@ void Canvas::triangleFilled(unsigned x0_,
 
 //--------------------------------------------------------------------------------------------------
 
-void Canvas::rectangle(
-  unsigned x_, unsigned y_, unsigned w_, unsigned h_, const Color& color_)
+void Canvas::rectangle(unsigned x_, unsigned y_, unsigned w_, unsigned h_, const Color& color_)
 {
   rectangleFilled(x_, y_, w_, h_, color_, {});
 }
 
 //--------------------------------------------------------------------------------------------------
 
-void Canvas::rectangleFilled(unsigned x_,
-  unsigned y_,
-  unsigned w_,
-  unsigned h_,
-  const Color& color_,
-  const Color& fillColor_)
+void Canvas::rectangleFilled(
+  unsigned x_, unsigned y_, unsigned w_, unsigned h_, const Color& color_, const Color& fillColor_)
 {
   if (x_ > width() || y_ > height() || w_ == 0 || h_ == 0)
   {
@@ -440,8 +433,7 @@ void Canvas::rectangleRoundedFilled(unsigned x_,
 
 //--------------------------------------------------------------------------------------------------
 
-void Canvas::circle(
-  unsigned x_, unsigned y_, unsigned r_, const Color& color_, CircleType type_)
+void Canvas::circle(unsigned x_, unsigned y_, unsigned r_, const Color& color_, CircleType type_)
 {
   circleFilled(x_, y_, r_, color_, {}, type_);
 }
@@ -506,7 +498,7 @@ void Canvas::circleFilled(unsigned x_,
     for (y = rY0; y <= rY1; y++)
     {
       int xysq = ((x * x) + (y * y));
-	  int rsq = r_ * r_;
+      int rsq = r_ * r_;
       if ((rsq - xysq < static_cast<int>(r_)) && (xysq - rsq < static_cast<int>(r_)))
       {
         setPixel((x + x_), (y + y_), color_);
@@ -521,12 +513,8 @@ void Canvas::circleFilled(unsigned x_,
 
 //--------------------------------------------------------------------------------------------------
 
-void Canvas::putBitmap(unsigned x_,
-  unsigned y_,
-  unsigned w_,
-  unsigned h_,
-  const uint8_t* pBitmap_,
-  const Color& color_)
+void Canvas::putBitmap(
+  unsigned x_, unsigned y_, unsigned w_, unsigned h_, const uint8_t* pBitmap_, const Color& color_)
 {
   if ((x_ >= width()) || (y_ >= height()))
   {

@@ -56,7 +56,7 @@ bool DeviceHandleLibUSB::read(Transfer& transfer_, uint8_t endpoint_)
     kInputBufferSize,                                 // Size of data
     &nBytesRead,                                      // N. of bytes actually read
     kLibUSBReadTimeout                                // Timeout
-    );
+  );
 
   if ((LIBUSB_SUCCESS == result) && (nBytesRead > 0))
   {
@@ -80,13 +80,11 @@ bool DeviceHandleLibUSB::write(const Transfer& transfer_, uint8_t endpoint_)
       transfer_.size(),                                 // Size of data
       &nBytesWritten,                                   // N. of bytes actually written
       kLibUSBWriteTimeout                               // Timeout
-      );
+    );
     if ((LIBUSB_SUCCESS != result) || (nBytesWritten != transfer_.size()))
     {
-      M_LOG(
-        "[DeviceHandleLibUSB] write: error=" << result << " - transfer size: " << transfer_.size()
-                                             << " written: "
-                                             << nBytesWritten);
+      M_LOG("[DeviceHandleLibUSB] write: error="
+            << result << " - transfer size: " << transfer_.size() << " written: " << nBytesWritten);
       return false;
     }
     return true;

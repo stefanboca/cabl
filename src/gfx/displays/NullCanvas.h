@@ -65,19 +65,12 @@ public:
   {
   }
 
-  void triangle(
-    unsigned, unsigned, unsigned, unsigned, unsigned, unsigned, const Color&) override
+  void triangle(unsigned, unsigned, unsigned, unsigned, unsigned, unsigned, const Color&) override
   {
   }
 
-  void triangleFilled(unsigned,
-    unsigned,
-    unsigned,
-    unsigned,
-    unsigned,
-    unsigned,
-    const Color&,
-    const Color&) override
+  void triangleFilled(
+    unsigned, unsigned, unsigned, unsigned, unsigned, unsigned, const Color&, const Color&) override
   {
   }
 
@@ -85,19 +78,16 @@ public:
   {
   }
 
-  void rectangleFilled(
-    unsigned, unsigned, unsigned, unsigned, const Color&, const Color&) override
+  void rectangleFilled(unsigned, unsigned, unsigned, unsigned, const Color&, const Color&) override
   {
   }
 
-  void rectangleRounded(
-    unsigned, unsigned, unsigned, unsigned, unsigned, const Color&) override
+  void rectangleRounded(unsigned, unsigned, unsigned, unsigned, unsigned, const Color&) override
   {
   }
 
   void rectangleRoundedFilled(
-    unsigned, unsigned, unsigned, unsigned, unsigned, const Color&, const Color&)
-    override
+    unsigned, unsigned, unsigned, unsigned, unsigned, const Color&, const Color&) override
   {
   }
 
@@ -105,13 +95,11 @@ public:
   {
   }
 
-  void circleFilled(
-    unsigned, unsigned, unsigned, const Color&, const Color&, CircleType) override
+  void circleFilled(unsigned, unsigned, unsigned, const Color&, const Color&, CircleType) override
   {
   }
 
-  void putBitmap(
-    unsigned, unsigned, unsigned, unsigned, const uint8_t*, const Color&) override
+  void putBitmap(unsigned, unsigned, unsigned, unsigned, const uint8_t*, const Color&) override
   {
   }
 
@@ -123,13 +111,12 @@ public:
   {
   }
 
-  void putText(
-    unsigned, unsigned, const char*, const Color&, const std::string&, unsigned) override
+  void putText(unsigned, unsigned, const char*, const Color&, const std::string&, unsigned) override
   {
   }
 };
 
 //--------------------------------------------------------------------------------------------------
 
-} // cabl
-} // sl
+} // namespace cabl
+} // namespace sl

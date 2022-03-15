@@ -148,8 +148,7 @@ public:
    \param y_               The Y coordinate of the pixel
    \param color_           The pixel color (RGB + Monochrome)
    */
-  virtual void setPixel(
-    unsigned x_, unsigned y_, const Color& color_, bool bSetDirtyChunk_ = true);
+  virtual void setPixel(unsigned x_, unsigned y_, const Color& color_, bool bSetDirtyChunk_ = true);
 
   //! Get the pixel value as an RGB color
   /*!
@@ -167,8 +166,7 @@ public:
    \param y1_              The Y coordinate of the second point
    \param color_           The line color (white, black, invert, random)
    */
-  virtual void line(
-    unsigned x0_, unsigned y0_, unsigned x1_, unsigned y1_, const Color& color_);
+  virtual void line(unsigned x0_, unsigned y0_, unsigned x1_, unsigned y1_, const Color& color_);
 
   //! Draw a bitmap
   /*!
@@ -199,8 +197,7 @@ public:
     const Color& color_,
     const Color& fillColor_);
 
-  virtual void rectangle(
-    unsigned x_, unsigned y_, unsigned w_, unsigned h_, const Color& color_);
+  virtual void rectangle(unsigned x_, unsigned y_, unsigned w_, unsigned h_, const Color& color_);
 
   virtual void rectangleFilled(unsigned x_,
     unsigned y_,
@@ -220,11 +217,8 @@ public:
     const Color& color_,
     const Color& fillColor_);
 
-  virtual void circle(unsigned rx_,
-    unsigned ry_,
-    unsigned r_,
-    const Color& color_,
-    CircleType = CircleType::Full);
+  virtual void circle(
+    unsigned rx_, unsigned ry_, unsigned r_, const Color& color_, CircleType = CircleType::Full);
 
   virtual void circleFilled(unsigned x_,
     unsigned y_,
@@ -283,7 +277,7 @@ public:
     const char* pStr_,
     const Color& color_,
     const std::string& font_ = "",
-	unsigned spacing_ = 0);
+    unsigned spacing_ = 0);
 
   /**@}*/ // End of Text group
 

@@ -66,8 +66,9 @@ Driver::tCollDeviceDescriptor DriverMIDI::enumerate()
             {
               M_LOG("[DriverMIDI] out: " << portNameOut << " ->" << iOut);
               M_LOG("[DriverMIDI] in: " << portNameIn << " ->" << iIn);
-              auto f = std::async(
-                std::launch::async, [this, &mtxDevices, &collDevices, iIn, iOut]() {
+              auto f = std::async(std::launch::async,
+                [this, &mtxDevices, &collDevices, iIn, iOut]()
+                {
                   bool received = false;
                   bool timeout = false;
                   RtMidiIn _midiIn;
@@ -119,7 +120,7 @@ Driver::tCollDeviceDescriptor DriverMIDI::enumerate()
           }
           catch (RtMidiError& error)
           {
-			std::string strError(error.getMessage());
+            std::string strError(error.getMessage());
             M_LOG("[DriverMIDI] RtMidiError: " << strError);
           }
         }
@@ -127,7 +128,7 @@ Driver::tCollDeviceDescriptor DriverMIDI::enumerate()
     }
     catch (RtMidiError& error)
     {
-	  std::string strError(error.getMessage());
+      std::string strError(error.getMessage());
       M_LOG("[DriverMIDI] RtMidiError: " << strError);
     }
   }
@@ -146,7 +147,7 @@ tPtr<DeviceHandleImpl> DriverMIDI::connect(const DeviceDescriptor& device_)
   }
   catch (RtMidiError& error)
   {
-	std::string strError(error.getMessage());
+    std::string strError(error.getMessage());
     M_LOG("[DriverMIDI] RtMidiError: " << strError);
     return nullptr;
   }

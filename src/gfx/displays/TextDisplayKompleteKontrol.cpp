@@ -45,7 +45,8 @@ void TextDisplayKompleteKontrol::putCharacter(unsigned col_, unsigned row_, char
 
 //--------------------------------------------------------------------------------------------------
 
-void TextDisplayKompleteKontrol::putText(const std::string& string_, unsigned row_, Alignment align_)
+void TextDisplayKompleteKontrol::putText(
+  const std::string& string_, unsigned row_, Alignment align_)
 {
   if (row_ == 0 || row_ >= height())
   {

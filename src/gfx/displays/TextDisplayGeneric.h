@@ -145,7 +145,7 @@ private:
       case Alignment::Center:
       {
         unsigned nFills = this->width() - strValue.length();
-		unsigned leftFills = static_cast<unsigned>(nFills / 2.0f);
+        unsigned leftFills = static_cast<unsigned>(nFills / 2.0f);
         strValue.insert(0, leftFills, ' ');
         strValue.append(nFills - leftFills, ' ');
         break;

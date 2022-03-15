@@ -105,14 +105,12 @@ public:
   {
     return (m_name < other_.m_name) || ((m_name == other_.m_name) && (m_type < other_.m_type))
            || ((m_name == other_.m_name) && (m_type == other_.m_type)
-                && (m_vendorId < other_.m_vendorId))
+               && (m_vendorId < other_.m_vendorId))
            || ((m_name == other_.m_name) && (m_type == other_.m_type)
-                && (m_vendorId == other_.m_vendorId)
-                && (m_productId < other_.m_productId))
+               && (m_vendorId == other_.m_vendorId) && (m_productId < other_.m_productId))
            || ((m_name == other_.m_name) && (m_type == other_.m_type)
-                && (m_vendorId == other_.m_vendorId)
-                && (m_productId < other_.m_productId)
-                && (m_serialNumber < other_.m_serialNumber));
+               && (m_vendorId == other_.m_vendorId) && (m_productId < other_.m_productId)
+               && (m_serialNumber < other_.m_serialNumber));
   }
   operator bool() const
   {

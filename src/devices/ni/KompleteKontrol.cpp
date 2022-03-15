@@ -539,8 +539,9 @@ void KompleteKontrolBase::setLedImpl(Led led_, const Color& color_)
     ledsKeysData()[ledIndex - kFirstKeyIndex + 1] = color_.green();
     ledsKeysData()[ledIndex - kFirstKeyIndex + 2] = color_.blue();
 
-    m_isDirtyKeyLeds = m_isDirtyKeyLeds || (currentR != color_.red() || currentG != color_.green()
-                                             || currentB != color_.blue());
+    m_isDirtyKeyLeds
+      = m_isDirtyKeyLeds
+        || (currentR != color_.red() || currentG != color_.green() || currentB != color_.blue());
   }
   else
   {

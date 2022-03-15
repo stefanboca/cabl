@@ -24,7 +24,6 @@ class Push2Display : public Device
 {
 
 public:
-
   void setButtonLed(Device::Button, const Color&) override
   {
   }

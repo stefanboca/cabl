@@ -41,5 +41,5 @@ tPtr<DeviceHandleImpl> DriverMAX3421E::connect(const DeviceDescriptor&)
 
 //--------------------------------------------------------------------------------------------------
 
-} // cabl
-} // sl
+} // namespace cabl
+} // namespace sl

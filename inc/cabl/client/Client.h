@@ -24,7 +24,7 @@ class Client
 public:
   Client(DiscoveryPolicy = {});
   ~Client();
-  
+
   void init();
 
   virtual void disconnected();
@@ -56,9 +56,9 @@ private:
 
   uint8_t encoderValue(bool valueIncreased_,
     unsigned step_,
-	unsigned currentValue_,
+    unsigned currentValue_,
     unsigned minValue_,
-	unsigned maxValue_);
+    unsigned maxValue_);
 
   std::string m_clientId;
   Coordinator::tDevicePtr m_pDevice;

@@ -407,7 +407,8 @@ bool MaschineMK1::read()
     return false;
   }
 
-  if (input[0] != 2) // Strange but I had to add this filter to avoid strange pad updates when turning encoders.
+  if (input[0] != 2) // Strange but I had to add this filter to avoid strange pad updates when
+                     // turning encoders.
   {
     processPads(input);
   }
@@ -430,7 +431,7 @@ void MaschineMK1::processPads(const Transfer& input_)
     {
       m_padsStatus[pad] = true;
       keyChanged(
-        pad, m_padsData[pad] / 4096.0 , m_buttonStates[static_cast<uint8_t>(Button::Shift)]);
+        pad, m_padsData[pad] / 4096.0, m_buttonStates[static_cast<uint8_t>(Button::Shift)]);
     }
     else
     {

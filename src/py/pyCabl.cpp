@@ -33,7 +33,7 @@ sl::cabl::LedArray const volatile* get_pointer<class sl::cabl::LedArray const vo
 {
   return c;
 }
-}
+} // namespace boost
 
 //--------------------------------------------------------------------------------------------------
 
@@ -359,7 +359,7 @@ BOOST_PYTHON_MODULE(pycabl)
       args("val", "color", "alignment"),
       "Displays the value using the specified color and alignment");
 
-//------------------------------------------------------------------------------------------------
+  //------------------------------------------------------------------------------------------------
 
 #define M_DESCRIPTOR_TYPE_DEF(item) value(#item, DeviceDescriptor::Type::item)
   enum_<DeviceDescriptor::Type>("DeviceDescriptorType")
@@ -369,7 +369,7 @@ BOOST_PYTHON_MODULE(pycabl)
     .M_DESCRIPTOR_TYPE_DEF(Unknown);
 #undef M_DESCRIPTOR_TYPE_DEF
 
-//------------------------------------------------------------------------------------------------
+  //------------------------------------------------------------------------------------------------
 
 #define M_BTN_DEF(item) value(#item, Device::Button::item)
   enum_<Device::Button>("Button")
@@ -541,7 +541,7 @@ BOOST_PYTHON_MODULE(pycabl)
     .M_BTN_DEF(Unknown);
 #undef M_BTN_DEF
 
-//------------------------------------------------------------------------------------------------
+  //------------------------------------------------------------------------------------------------
 
 #define M_CIRCLE_DEF(item) value(#item, Canvas::CircleType::item)
   enum_<Canvas::CircleType>("CircleType")
@@ -556,7 +556,7 @@ BOOST_PYTHON_MODULE(pycabl)
     .M_CIRCLE_DEF(QuarterBottomLeft);
 #undef M_CIRCLE_DEF
 
-//------------------------------------------------------------------------------------------------
+  //------------------------------------------------------------------------------------------------
 
 #define M_BLENDMODE_DEF(item) value(#item, BlendMode::item)
   enum_<BlendMode>("BlendMode")
@@ -565,7 +565,7 @@ BOOST_PYTHON_MODULE(pycabl)
     .M_BLENDMODE_DEF(Transparent);
 #undef M_BLENDMODE_DEF
 
-//------------------------------------------------------------------------------------------------
+  //------------------------------------------------------------------------------------------------
 
 #define M_ALIGNMENT_DEF(item) value(#item, Alignment::item)
   enum_<Alignment>("Alignment").M_ALIGNMENT_DEF(Left).M_ALIGNMENT_DEF(Center).M_ALIGNMENT_DEF(Right);

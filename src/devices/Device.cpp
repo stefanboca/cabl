@@ -10,12 +10,12 @@
 
 
 #include "cabl/gfx/Canvas.h"
-#include "cabl/gfx/TextDisplay.h"
 #include "cabl/gfx/LedArray.h"
 #include "cabl/gfx/LedMatrix.h"
+#include "cabl/gfx/TextDisplay.h"
 
-#include "gfx/displays/NullCanvas.h"
 #include "gfx/LedArrayDummy.h"
+#include "gfx/displays/NullCanvas.h"
 
 namespace sl
 {
@@ -265,5 +265,5 @@ void Device::render()
 
 //--------------------------------------------------------------------------------------------------
 
-} // cabl
-} // sl
+} // namespace cabl
+} // namespace sl

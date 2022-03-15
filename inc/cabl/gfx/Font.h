@@ -36,8 +36,8 @@ public:
 
   virtual bool pixel(uint8_t char_, uint8_t x_, uint8_t y_) const noexcept = 0;
 
-  virtual inline bool pixelImpl(uint8_t* pFontData_, uint8_t c_, uint8_t x_, uint8_t y_) const
-    noexcept
+  virtual inline bool pixelImpl(
+    uint8_t* pFontData_, uint8_t c_, uint8_t x_, uint8_t y_) const noexcept
   {
     if (c_ > lastChar() || x_ >= width() || y_ >= height())
     {

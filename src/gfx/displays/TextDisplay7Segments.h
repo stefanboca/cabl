@@ -28,7 +28,7 @@ namespace detail
 const uint8_t kTextDisplay7S_FontData[] = {
 #include "gfx/fonts/data/FONT_7-seg.h"
 };
-} // namespace
+} // namespace detail
 
 //--------------------------------------------------------------------------------------------------
 
@@ -90,7 +90,7 @@ public:
     std::string strValue = std::to_string(static_cast<int>(integral));
     std::string strFractional = std::to_string(static_cast<int>(fractional * 10));
     unsigned emptySpaces = this->width() - strValue.length() - strFractional.length();
-	unsigned leftFills = static_cast<unsigned>(emptySpaces / 2.0f);
+    unsigned leftFills = static_cast<unsigned>(emptySpaces / 2.0f);
     resetDots(row_);
     setDot(strValue.length() - 1 + leftFills, row_);
     strValue.append(strFractional);
@@ -128,7 +128,7 @@ private:
       case Alignment::Center:
       {
         unsigned nFills = this->width() - strValue.length();
-		unsigned leftFills = static_cast<unsigned>(nFills / 2.0f);
+        unsigned leftFills = static_cast<unsigned>(nFills / 2.0f);
         strValue.insert(0, leftFills, ' ');
         strValue.append(nFills - leftFills, ' ');
         break;

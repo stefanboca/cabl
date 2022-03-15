@@ -7,26 +7,24 @@
 
 #pragma once
 
-#include "comm/DriverImpl.h"
 #include "comm/DeviceHandleImpl.h"
+#include "comm/DriverImpl.h"
 
 namespace sl
 {
 namespace cabl
 {
-  
+
 //--------------------------------------------------------------------------------------------------
 
 class DriverProbe : public DriverImpl
 {
 public:
-
   DriverProbe();
   ~DriverProbe() override;
-  
-  Driver::tCollDeviceDescriptor enumerate() override;
-  tPtr<DeviceHandleImpl>        connect(const DeviceDescriptor&) override;
 
+  Driver::tCollDeviceDescriptor enumerate() override;
+  tPtr<DeviceHandleImpl> connect(const DeviceDescriptor&) override;
 };
 
 //--------------------------------------------------------------------------------------------------

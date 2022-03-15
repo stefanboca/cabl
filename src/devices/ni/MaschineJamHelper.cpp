@@ -40,7 +40,7 @@ const std::vector<sl::cabl::Color> kJam_colors{
   { 226, 226, 226 }, { 160, 255, 255 },
 };
 // clang-format on
-}
+} // namespace
 
 namespace sl
 {

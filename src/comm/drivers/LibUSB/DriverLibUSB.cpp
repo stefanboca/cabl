@@ -114,13 +114,15 @@ DriverLibUSB::DriverLibUSB() : m_usbThreadRunning(true)
     this,
     m_pHotplugHandle);
 
-  m_usbThread = std::thread([this]() {
-    while (m_usbThreadRunning)
+  m_usbThread = std::thread(
+    [this]()
     {
-      libusb_handle_events(m_pContext);
-      //      std::this_thread::sleep_for(std::chrono::milliseconds(1));
-    }
-  });
+      while (m_usbThreadRunning)
+      {
+        libusb_handle_events(m_pContext);
+        //      std::this_thread::sleep_for(std::chrono::milliseconds(1));
+      }
+    });
 
   M_LOG("[LibUSB] initialization");
 }

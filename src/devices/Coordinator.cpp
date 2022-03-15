@@ -64,26 +64,29 @@ void Coordinator::run()
     return;
   }
 
-  m_cablThread = std::thread([this]() {
-    while(!m_clientRegistered)
+  m_cablThread = std::thread(
+    [this]()
     {
-      std::this_thread::yield();;
-    }
-    scan();
-    while (m_running)
-    {
-      std::lock_guard<std::mutex> lock(m_mtxDevices);
-      for (const auto& device : m_collDevices)
+      while (!m_clientRegistered)
       {
-        if (device.second)
-        {
-          device.second->onTick();
-          //! \todo Check tick() result
-        }
+        std::this_thread::yield();
+        ;
       }
-      std::this_thread::yield();
-    }
-  });
+      scan();
+      while (m_running)
+      {
+        std::lock_guard<std::mutex> lock(m_mtxDevices);
+        for (const auto& device : m_collDevices)
+        {
+          if (device.second)
+          {
+            device.second->onTick();
+            //! \todo Check tick() result
+          }
+        }
+        std::this_thread::yield();
+      }
+    });
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -227,9 +230,8 @@ void Coordinator::scan()
   m_scanDone = true;
 
   if (m_collDeviceDescriptors.size() != deviceDescriptors.size()
-      || !std::equal(m_collDeviceDescriptors.begin(),
-           m_collDeviceDescriptors.end(),
-           deviceDescriptors.begin()))
+      || !std::equal(
+        m_collDeviceDescriptors.begin(), m_collDeviceDescriptors.end(), deviceDescriptors.begin()))
   {
     devicesListChanged();
   }

@@ -135,16 +135,14 @@ protected:
 private:
   friend class py::CanvasHelper;
 
-  template<unsigned N = NCHUNKS>
-  typename std::enable_if<N == 0, bool>::type
-  dirtyChunkImpl(unsigned chunk_) const
+  template <unsigned N = NCHUNKS>
+  typename std::enable_if<N == 0, bool>::type dirtyChunkImpl(unsigned chunk_) const
   {
     return false;
   }
 
-  template<unsigned N = NCHUNKS>
-  typename std::enable_if< (N > 0), bool>::type
-  dirtyChunkImpl(unsigned chunk_) const
+  template <unsigned N = NCHUNKS>
+  typename std::enable_if<(N > 0), bool>::type dirtyChunkImpl(unsigned chunk_) const
   {
     if (chunk_ >= NCHUNKS)
     {
@@ -153,19 +151,17 @@ private:
     return m_chunkDirtyFlags[chunk_];
   }
 
-  template<unsigned N = NCHUNKS>
-  typename std::enable_if<N == 0>::type
-  setDirtyChunkImpl(unsigned yStart_) const
+  template <unsigned N = NCHUNKS>
+  typename std::enable_if<N == 0>::type setDirtyChunkImpl(unsigned yStart_) const
   {
     return;
   }
 
-#pragma warning( push )
-#pragma warning( disable: 4723 )
+#pragma warning(push)
+#pragma warning(disable : 4723)
 
-  template<unsigned N = NCHUNKS>
-  typename std::enable_if< (N > 0)>::type
-  setDirtyChunkImpl(unsigned yStart_) const
+  template <unsigned N = NCHUNKS>
+  typename std::enable_if<(N > 0)>::type setDirtyChunkImpl(unsigned yStart_) const
   {
     unsigned constexpr chunkHeight = H / NCHUNKS;
     if (chunkHeight == 0 || NCHUNKS == 0)
@@ -179,7 +175,7 @@ private:
     }
   }
 
-#pragma warning( pop )
+#pragma warning(pop)
 
   std::array<uint8_t, SIZE> m_data{};               //!< The raw Canvas data
   mutable std::bitset<NCHUNKS> m_chunkDirtyFlags{}; //!< Chunk-specific dirty flags

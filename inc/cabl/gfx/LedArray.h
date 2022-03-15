@@ -67,9 +67,9 @@ public:
   virtual Color pixel(unsigned pos_) const = 0;
 
   virtual void setValue(double val_, Color color_, Alignment alignment_ = Alignment::Left) = 0;
-  
+
   virtual void clear() = 0;
-  
+
   /** @} */ // End of group Lifetime
 
   //--------------------------------------------------------------------------------------------------
@@ -147,59 +147,59 @@ public:
   {
     double val = std::min(val_, 1.0);
     clear();
-    switch(alignment_)
+    switch (alignment_)
     {
       case Alignment::Left:
       {
         val = std::max(val_, 0.0);
         unsigned nLedsOn = static_cast<unsigned>((val * SIZE) + 0.5);
-        for(unsigned i = 0; i < nLedsOn; i++)
+        for (unsigned i = 0; i < nLedsOn; i++)
         {
-          setPixel(i,color_);
+          setPixel(i, color_);
         }
         break;
       }
       case Alignment::Center:
       {
         val = (std::max(val_, -1.0)) / 2.0;
-		int nLedsOn = static_cast<int>((val * SIZE) + 0.5);
-        if(val < 0)
+        int nLedsOn = static_cast<int>((val * SIZE) + 0.5);
+        if (val < 0)
         {
-          for(int i = nLedsOn; i >= 0; i--)
+          for (int i = nLedsOn; i >= 0; i--)
           {
-            setPixel(i,color_);
+            setPixel(i, color_);
           }
         }
         else if (val > 0)
         {
-          for(int i = nLedsOn; i < SIZE; i++)
+          for (int i = nLedsOn; i < SIZE; i++)
           {
-            setPixel(i,color_);
+            setPixel(i, color_);
           }
         }
-        setPixel(SIZE/2, color_);
+        setPixel(SIZE / 2, color_);
         break;
       }
       case Alignment::Right:
       {
         val = std::max(val_, 0.0);
-		int nLedsOn = static_cast<int>((val * SIZE) + 0.5);
-        for(int i = SIZE; i >= nLedsOn; i--)
+        int nLedsOn = static_cast<int>((val * SIZE) + 0.5);
+        for (int i = SIZE; i >= nLedsOn; i--)
         {
-          setPixel(i,color_);
+          setPixel(i, color_);
         }
         break;
       }
     }
     setDirty();
   }
-  
+
   //! turn off all leds
   void clear() override
   {
     std::fill(m_data.begin(), m_data.end(), 0);
   }
-  
+
   //! \return the length of the led array
   unsigned length() const override
   {

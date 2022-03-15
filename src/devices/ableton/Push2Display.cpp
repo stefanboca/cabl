@@ -76,14 +76,15 @@ bool Push2Display::sendDisplayData() const
 
   for (unsigned offset = 0; offset < m_display.bufferSize(); offset += k_singleTransferSize)
   {
-    auto displayData = Transfer({m_display.data() + offset, m_display.data() + offset + k_singleTransferSize});
-  /*  for(unsigned i = 0; i < displayData.size(); i+=4)
-    {
-      displayData[i] ^= 0xf3;
-      displayData[i+1] ^= 0xe7;
-      displayData[i+2] ^= 0xff;
-      displayData[i+3] ^= 0xe7;
-    }*/
+    auto displayData
+      = Transfer({m_display.data() + offset, m_display.data() + offset + k_singleTransferSize});
+    /*  for(unsigned i = 0; i < displayData.size(); i+=4)
+      {
+        displayData[i] ^= 0xf3;
+        displayData[i+1] ^= 0xe7;
+        displayData[i+2] ^= 0xff;
+        displayData[i+3] ^= 0xe7;
+      }*/
     if (!writeToDeviceHandle(displayData, 0x01))
     {
       return false;

@@ -71,10 +71,8 @@ bool DeviceHandleSAM3XE::write(const Transfer& transfer_, uint8_t endpoint_)
 
     if ((0 != result) || (nBytesWritten != transfer_.size()))
     {
-      M_LOG(
-        "[DeviceHandleLibUSB] write: error=" << result << " - transfer size: " << transfer_.size()
-                                             << " written: "
-                                             << nBytesWritten);
+      M_LOG("[DeviceHandleLibUSB] write: error="
+            << result << " - transfer size: " << transfer_.size() << " written: " << nBytesWritten);
     }
     return ((0 == result) && (nBytesWritten == transfer_.size()));
   }
@@ -165,7 +163,7 @@ uint32_t DeviceHandleSAM3XE::Init(uint32_t parent_, uint32_t port_, uint32_t low
   // Check if ADK device is already in accessory mode; if yes, configure and exit
   if (((USB_DEVICE_DESCRIPTOR*)buf)->idVendor == ADK_VID
       && (((USB_DEVICE_DESCRIPTOR*)buf)->idProduct == ADK_PID
-           || ((USB_DEVICE_DESCRIPTOR*)buf)->idProduct == ADB_PID))
+          || ((USB_DEVICE_DESCRIPTOR*)buf)->idProduct == ADB_PID))
   {
     nOfConfigurations = ((USB_DEVICE_DESCRIPTOR*)buf)->bNumConfigurations;
 
@@ -297,5 +295,5 @@ void DeviceHandleSAM3XE::EndpointXtract(uint32_t conf_,
 }
 //--------------------------------------------------------------------------------------------------
 
-} // cabl
-} // sl
+} // namespace cabl
+} // namespace sl

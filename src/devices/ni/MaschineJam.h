@@ -105,7 +105,7 @@ private:
   std::bitset<kMASJ_nButtons> m_buttonStates{};
   std::bitset<kMASJ_nPads> m_padsStatus{};
   uint8_t m_encoderValue;
-  
+
   mutable bool m_isDirtyPadLeds{false};
   mutable bool m_isDirtyStripLeds{false};
   mutable bool m_isDirtyButtonLeds{false};

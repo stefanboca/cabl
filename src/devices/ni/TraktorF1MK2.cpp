@@ -331,8 +331,9 @@ void TraktorF1MK2::setLedImpl(Led led_, const Color& color_)
     m_leds[ledIndex + 1] = 0x7F & color_.red();
     m_leds[ledIndex + 2] = 0x7F & color_.green();
 
-    m_isDirtyLeds = m_isDirtyLeds || (currentR != color_.red() || currentG != color_.green()
-                                       || currentB != color_.blue());
+    m_isDirtyLeds
+      = m_isDirtyLeds
+        || (currentR != color_.red() || currentG != color_.green() || currentB != color_.blue());
   }
   else
   {

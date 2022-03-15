@@ -30,15 +30,14 @@ public:
   {
     return {};
   }
-  
-   void setValue(double val_, Color color_, Alignment alignment_) override
-   {
-   }
-  
-   void clear() override
-   {
-   
-   }
+
+  void setValue(double val_, Color color_, Alignment alignment_) override
+  {
+  }
+
+  void clear() override
+  {
+  }
 };
 
 //--------------------------------------------------------------------------------------------------

@@ -520,8 +520,9 @@ void MaschineMK2::setLedImpl(Led led_, const Color& color_)
       m_ledsPads[ledIndex - kFirstPadIndex] = color_.red();
       m_ledsPads[ledIndex - kFirstPadIndex + 1] = color_.green();
       m_ledsPads[ledIndex - kFirstPadIndex + 2] = color_.blue();
-      m_isDirtyPadLeds = m_isDirtyPadLeds || (currentR != color_.red() || currentG != color_.green()
-                                               || currentB != color_.blue());
+      m_isDirtyPadLeds
+        = m_isDirtyPadLeds
+          || (currentR != color_.red() || currentG != color_.green() || currentB != color_.blue());
     }
     else
     {
@@ -565,26 +566,11 @@ bool MaschineMK2::isRGBLed(Led led_) const noexcept
 {
 
   if (Led::GroupA == led_ || Led::GroupB == led_ || Led::GroupC == led_ || Led::GroupD == led_
-      || Led::GroupE == led_
-      || Led::GroupF == led_
-      || Led::GroupG == led_
-      || Led::GroupH == led_
-      || Led::Pad1 == led_
-      || Led::Pad2 == led_
-      || Led::Pad3 == led_
-      || Led::Pad4 == led_
-      || Led::Pad5 == led_
-      || Led::Pad6 == led_
-      || Led::Pad7 == led_
-      || Led::Pad8 == led_
-      || Led::Pad9 == led_
-      || Led::Pad10 == led_
-      || Led::Pad11 == led_
-      || Led::Pad12 == led_
-      || Led::Pad13 == led_
-      || Led::Pad14 == led_
-      || Led::Pad15 == led_
-      || Led::Pad16 == led_)
+      || Led::GroupE == led_ || Led::GroupF == led_ || Led::GroupG == led_ || Led::GroupH == led_
+      || Led::Pad1 == led_ || Led::Pad2 == led_ || Led::Pad3 == led_ || Led::Pad4 == led_
+      || Led::Pad5 == led_ || Led::Pad6 == led_ || Led::Pad7 == led_ || Led::Pad8 == led_
+      || Led::Pad9 == led_ || Led::Pad10 == led_ || Led::Pad11 == led_ || Led::Pad12 == led_
+      || Led::Pad13 == led_ || Led::Pad14 == led_ || Led::Pad15 == led_ || Led::Pad16 == led_)
   {
     return true;
   }

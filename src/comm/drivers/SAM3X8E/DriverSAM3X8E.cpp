@@ -41,5 +41,5 @@ tPtr<DeviceHandleImpl> DriverSAM3X8E::connect(const DeviceDescriptor&)
 
 //--------------------------------------------------------------------------------------------------
 
-} // cabl
-} // sl
+} // namespace cabl
+} // namespace sl

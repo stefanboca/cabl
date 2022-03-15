@@ -29,7 +29,7 @@ using namespace std::placeholders;
 
 Client::Client(DiscoveryPolicy discoveryPolicy_)
   : m_clientId(Coordinator::instance().registerClient(
-      std::bind(&Client::devicesListChanged, this, std::placeholders::_1)))
+    std::bind(&Client::devicesListChanged, this, std::placeholders::_1)))
   , m_discoveryPolicy(std::move(discoveryPolicy_))
 {
   M_LOG("[Client] Client");
@@ -110,8 +110,7 @@ void Client::onRender()
 void Client::buttonChanged(Device::Button button_, bool buttonState_, bool shiftPressed_)
 {
   M_LOG("[Client] encoderChanged " << static_cast<int>(button_) << " ("
-                                   << (buttonState_ ? "clicked " : "released")
-                                   << ") "
+                                   << (buttonState_ ? "clicked " : "released") << ") "
                                    << (shiftPressed_ ? " SHIFT" : ""));
   m_update = true;
 }
@@ -121,8 +120,7 @@ void Client::buttonChanged(Device::Button button_, bool buttonState_, bool shift
 void Client::encoderChanged(unsigned encoder_, bool valueIncreased_, bool shiftPressed_)
 {
   M_LOG("[Client] encoderChanged " << static_cast<int>(encoder_) << (valueIncreased_ ? "++ " : "--")
-                                   << ") "
-                                   << (shiftPressed_ ? " SHIFT" : ""));
+                                   << ") " << (shiftPressed_ ? " SHIFT" : ""));
   m_update = true;
 }
 
