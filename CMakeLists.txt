@@ -53,6 +53,15 @@ option(COVERALLS_UPLOAD   "Upload the generated coveralls json" ON)
 option(CABL_TEST_ALL      "Generate test ouput for successful tests as well" OFF)
 option(CABL_TEST_JUNIT    "Generate a JUNIT xml test report" OFF)
 
+option(CABL_CLANG_TIDY "Lint code with clang-tidy" OFF)
+
+# Clang-tidy and Clang-format -------------------------------------------------------------------- #
+find_program(CLANG_TIDY NAMES clang-tidy clang-tidy-10 clang-tidy-11 clang-tidy-12)
+if(CABL_CLANG_TIDY AND CLANG_TIDY)
+  set(CMAKE_CXX_CLANG_TIDY ${CLANG_TIDY}; -header-filter=.; -checks=*;)
+endif()
+
+
 # Version ---------------------------------------------------------------------------------------- #
 
 if($ENV{APPVEYOR})
@@ -710,10 +719,4 @@ endif()
 # Examples --------------------------------------------------------------------------------------- #
 if(CABL_EXAMPLES AND NOT COVERALLS)
   add_subdirectory(examples)
-endif()
-
-# Clang-tidy and Clang-format -------------------------------------------------------------------- #
-if(IS_CABL)
-  include(clang-tools)
-  clangTidyTarget(cabl)
 endif()
