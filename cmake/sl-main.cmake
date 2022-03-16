@@ -7,6 +7,3 @@
 
 include(sl-compiler)
 include(sl-ext-libs)
-if(IS_CABL)
-  include(colors)
-endif()
